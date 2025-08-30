@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mano Mitra: Interactive Platform Concept</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Chosen Palette: Warm & Welcoming -->
+    <!-- Application Structure Plan: A dashboard-style SPA with a fixed left-hand sidebar for navigation and a dynamic main content area. This structure was chosen to allow non-linear exploration of the platform's complex features, letting users (like university admins or investors) dive into sections of interest. The flow is: Overview -> Problem -> Solution Deep-Dive -> Tech -> Impact. Key interactions include section navigation, clickable cards to reveal detailed info, and filters on the admin dashboard to simulate data exploration. This is more effective than a linear report for a multi-faceted platform concept. -->
+    <!-- Visualization & Content Choices: 
+        - Problem Statement -> Goal: Compare -> Viz: Bar Chart -> Interaction: Hover tooltips -> Justification: Clearly shows the magnitude of different student issues. (Chart.js)
+        - Solution Pillars -> Goal: Organize -> Viz: Interactive Cards -> Interaction: Click to reveal detailed text and charts -> Justification: Provides a high-level view with optional drill-down, preventing information overload. (HTML/JS)
+        - Self-Help Hub -> Goal: Compare -> Viz: Radar Chart -> Interaction: Revealed on card click -> Justification: Effectively shows the holistic, multi-dimensional nature of the wellness tools. (Chart.js)
+        - Institutional Impact -> Goal: Change & Compare -> Viz: Line & Bar Charts -> Interaction: Dropdown filter updates charts -> Justification: Simulates a real, dynamic dashboard for data-driven decision-making. (Chart.js)
+        - Hybrid Model -> Goal: Organize -> Viz: Flowchart Diagram -> Interaction: Static -> Justification: Clearly illustrates the user journey through different support tiers. (HTML/CSS) -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f1de; /* Main Background */
+        }
+        .sidebar-link {
+            transition: all 0.2s ease-in-out;
+        }
+        .sidebar-link.active, .sidebar-link:hover {
+            background-color: #81b29a; /* Accent Green */
+            color: #ffffff;
+            transform: translateX(4px);
+        }
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        .solution-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .solution-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .solution-detail {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.7s ease-in-out;
+        }
+    </style>
+</head>
+<body class="text-[#3D405B]">
+
+    <div class="flex min-h-screen">
+        <!-- Sidebar Navigation -->
+        <aside class="w-64 bg-[#3D405B] text-white p-6 fixed h-full shadow-lg">
+            <h1 class="text-3xl font-bold text-center text-[#E07A5F]">Mano Mitra</h1>
+            <p class="text-xs text-center text-gray-300 mb-8">Your Friend in Mind</p>
+            <nav>
+                <ul class="space-y-4">
+                    <li><a href="#overview" data-target="overview" class="sidebar-link active block py-2 px-4 rounded-md">Dashboard Overview</a></li>
+                    <li><a href="#problem" data-target="problem" class="sidebar-link block py-2 px-4 rounded-md">The Problem</a></li>
+                    <li><a href="#solution" data-target="solution" class="sidebar-link block py-2 px-4 rounded-md">The Solution</a></li>
+                    <li><a href="#technology" data-target="technology" class="sidebar-link block py-2 px-4 rounded-md">Technology & Innovation</a></li>
+                    <li><a href="#impact" data-target="impact" class="sidebar-link block py-2 px-4 rounded-md">Institutional Impact</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="ml-64 flex-1 p-4 sm:p-8 md:p-10">
+
+            <!-- Overview Section -->
+            <section id="overview" class="content-section active">
+                <h2 class="text-3xl font-bold mb-2">Dashboard Overview</h2>
+                <p class="text-gray-600 mb-6">A high-level view of the student mental health landscape and the Mano Mitra platform's core components.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                        <div class="text-6xl font-extrabold text-[#E07A5F]">1 in 4</div>
+                        <p class="mt-2 font-semibold">Students report symptoms of depression or anxiety.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                        <div class="text-6xl font-extrabold text-[#E07A5F]">&lt;10%</div>
+                        <p class="mt-2 font-semibold">Seek professional help due to stigma and access issues.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                        <div class="text-6xl font-extrabold text-[#E07A5F]">4-Pillar</div>
+                        <p class="mt-2 font-semibold">Mano Mitra's integrated approach to student wellness.</p>
+                    </div>
+                </div>
+                <div class="mt-8 bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold mb-4 text-center">The Mano Mitra Ecosystem</h3>
+                    <p class="text-center text-gray-600 mb-6">Mano Mitra provides a comprehensive, hybrid model combining AI-driven self-help tools with community support and access to professional therapists, creating a complete circle of care.</p>
+                    <div class="flex flex-col md:flex-row justify-around items-center text-center space-y-4 md:space-y-0">
+                        <div class="flex flex-col items-center">
+                            <span class="text-5xl">🤖</span>
+                            <p class="font-semibold mt-2">AI First-Aid</p>
+                        </div>
+                        <div class="text-2xl font-bold text-gray-300">+</div>
+                        <div class="flex flex-col items-center">
+                            <span class="text-5xl">🧘</span>
+                            <p class="font-semibold mt-2">Self-Help Hub</p>
+                        </div>
+                        <div class="text-2xl font-bold text-gray-300">+</div>
+                        <div class="flex flex-col items-center">
+                            <span class="text-5xl">🤝</span>
+                            <p class="font-semibold mt-2">Community Support</p>
+                        </div>
+                        <div class="text-2xl font-bold text-gray-300">+</div>
+                        <div class="flex flex-col items-center">
+                            <span class="text-5xl">👩‍⚕️</span>
+                            <p class="font-semibold mt-2">Professional Therapy</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- The Problem Section -->
+            <section id="problem" class="content-section">
+                <h2 class="text-3xl font-bold mb-2">The Campus Mental Health Crisis</h2>
+                <p class="text-gray-600 mb-6">Students face a multitude of pressures that existing support systems are ill-equipped to handle, leading to a silent crisis. This chart displays the primary concerns reported in anonymous campus surveys.</p>
+                 <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold mb-4 text-center">Key Issues Faced by Students</h3>
+                    <div class="chart-container">
+                        <canvas id="problemChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- The Solution Section -->
+            <section id="solution" class="content-section">
+                <h2 class="text-3xl font-bold mb-2">The Mano Mitra Solution</h2>
+                <p class="text-gray-600 mb-6">Mano Mitra addresses the core problems through four interconnected pillars. Click on each pillar to learn more about its features and the science behind it.</p>
+                <div class="space-y-4">
+                    <!-- AI First Aid -->
+                    <div class="bg-white rounded-lg shadow-md">
+                        <div id="solution-ai" class="solution-card p-6 flex justify-between items-center">
+                            <h3 class="text-2xl font-bold text-[#81B29A]">🤖 AI-Guided First-Aid</h3>
+                            <span class="text-2xl font-bold transform transition-transform duration-300">▼</span>
+                        </div>
+                        <div class="solution-detail px-6 pb-2">
+                             <p class="text-gray-600 mb-4 border-t pt-4">Provides immediate, 24/7, confidential support using evidence-based techniques. The bot acts as a first line of defense, offering coping strategies and escalating to human support when necessary.</p>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                <li><strong>Role-play therapy bot:</strong> Utilizes CBT & DBT frameworks to reframe negative thoughts.</li>
+                                <li><strong>Sentiment + Voice Emotion Recognition:</strong> Analyzes text and tone to understand the user's emotional state.</li>
+                                <li><strong>Mood Logging:</strong> Tracks emotional patterns through natural conversation.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Self-Help Hub -->
+                    <div class="bg-white rounded-lg shadow-md">
+                        <div id="solution-hub" class="solution-card p-6 flex justify-between items-center">
+                            <h3 class="text-2xl font-bold text-[#E07A5F]">🧘 Self-Help & Wellness Hub</h3>
+                             <span class="text-2xl font-bold transform transition-transform duration-300">▼</span>
+                        </div>
+                        <div class="solution-detail px-6 pb-6">
+                            <p class="text-gray-600 mb-4 border-t pt-4">Empowers students with a rich library of tools to proactively manage their well-being. This chart shows the comprehensive coverage of different wellness dimensions within the hub.</p>
+                            <div class="chart-container h-[400px]">
+                                <canvas id="hubChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Therapist Marketplace -->
+                    <div class="bg-white rounded-lg shadow-md">
+                        <div id="solution-therapist" class="solution-card p-6 flex justify-between items-center">
+                            <h3 class="text-2xl font-bold text-[#81B29A]">👩‍⚕️ Therapist Marketplace</h3>
+                             <span class="text-2xl font-bold transform transition-transform duration-300">▼</span>
+                        </div>
+                        <div class="solution-detail px-6 pb-2">
+                            <p class="text-gray-600 mb-4 border-t pt-4">Connects students with licensed professionals in a secure and accessible way, breaking down traditional barriers to therapy.</p>
+                             <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                <li><strong>Licensed Therapist Directory:</strong> A curated list of vetted mental health professionals.</li>
+                                <li><strong>AI-Based Matching:</strong> Algorithm matches students to therapists based on preferences, symptoms, and language.</li>
+                                <li><strong>Secure Tele-therapy:</strong> Integrated and confidential chat & video sessions.</li>
+                                <li><strong>Medication Management:</strong> Tools for dosage reminders and adherence tracking.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Community Support -->
+                     <div class="bg-white rounded-lg shadow-md">
+                        <div id="solution-community" class="solution-card p-6 flex justify-between items-center">
+                            <h3 class="text-2xl font-bold text-[#E07A5F]">💬 Community & Peer Support</h3>
+                             <span class="text-2xl font-bold transform transition-transform duration-300">▼</span>
+                        </div>
+                        <div class="solution-detail px-6 pb-2">
+                             <p class="text-gray-600 mb-4 border-t pt-4">Fosters a sense of belonging and reduces isolation by creating a safe space for students to connect and share experiences.</p>
+                             <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                <li><strong>Anonymous Moderated Forums:</strong> Safe spaces for open discussion on various mental health topics.</li>
+                                <li><strong>Trained Peer Supporters:</strong> Student volunteers trained to offer empathetic listening and guidance.</li>
+                                <li><strong>Storytelling & Group Challenges:</strong> Gamified activities to encourage connection and positive habits.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Technology & Innovation Section -->
+            <section id="technology" class="content-section">
+                <h2 class="text-3xl font-bold mb-2">Technology & Innovation</h2>
+                <p class="text-gray-600 mb-6">Mano Mitra stands out by integrating cutting-edge technology with a culturally-aware, user-centric design.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-3">Unique Selling Propositions</h3>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>First India-centric platform with multi-language and offline support.</li>
+                            <li>Integrated emotional recognition (text + voice) for nuanced AI interaction.</li>
+                            <li>Gamified mental health management to drive engagement and habit formation.</li>
+                            <li>Medication adherence tracking with progress logs.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-3">The Hybrid Care Model Flow</h3>
+                        <p class="text-gray-600 mb-4">This model ensures users receive the appropriate level of care, seamlessly escalating from self-help to professional intervention as needed.</p>
+                        <div class="space-y-2 text-center">
+                            <div class="p-3 bg-green-100 border-l-4 border-green-500 rounded">Student Engages with App</div>
+                            <div class="text-xl font-bold text-gray-400">↓</div>
+                            <div class="p-3 bg-blue-100 border-l-4 border-blue-500 rounded">AI Triage & Self-Help Tools</div>
+                             <div class="text-xl font-bold text-gray-400">↓</div>
+                            <div class="p-3 bg-yellow-100 border-l-4 border-yellow-500 rounded">Peer Support & Community Forum</div>
+                             <div class="text-xl font-bold text-gray-400">↓</div>
+                             <div class="p-3 bg-red-100 border-l-4 border-red-500 rounded">Professional Therapist via Marketplace</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Institutional Impact Section -->
+            <section id="impact" class="content-section">
+                <h2 class="text-3xl font-bold mb-2">Institutional Impact Dashboard</h2>
+                <p class="text-gray-600 mb-6">The admin dashboard provides institutions with anonymous, aggregated analytics to identify mental health trends and plan data-driven interventions. Use the filters to explore sample data.</p>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex flex-col sm:flex-row justify-between items-center mb-4 gap-4">
+                        <h3 class="text-xl font-bold">Campus Wellness Analytics</h3>
+                        <div class="flex items-center gap-2">
+                            <label for="yearFilter" class="font-semibold">Filter by Year:</label>
+                            <select id="yearFilter" class="p-2 border rounded-md shadow-sm">
+                                <option value="2024">2024</option>
+                                <option value="2025" selected>2025</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div>
+                             <h4 class="text-lg font-semibold text-center mb-2">Reported Issue Trends</h4>
+                            <div class="chart-container">
+                                <canvas id="impactBarChart"></canvas>
+                            </div>
+                        </div>
+                        <div>
+                             <h4 class="text-lg font-semibold text-center mb-2">Overall Distress Level Trend</h4>
+                            <div class="chart-container">
+                                <canvas id="impactLineChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sidebarLinks = document.querySelectorAll('.sidebar-link');
+            const contentSections = document.querySelectorAll('.content-section');
+            const solutionCards = document.querySelectorAll('.solution-card');
+
+            // --- Navigation Logic ---
+            const setActiveSection = (targetId) => {
+                sidebarLinks.forEach(link => {
+                    link.classList.toggle('active', link.dataset.target === targetId);
+                });
+                contentSections.forEach(section => {
+                    section.classList.toggle('active', section.id === targetId);
+                });
+            };
+
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = e.currentTarget.dataset.target;
+                    setActiveSection(targetId);
+                    window.location.hash = targetId;
+                });
+            });
+
+            // Handle initial page load with hash
+            const initialTarget = window.location.hash.substring(1) || 'overview';
+            setActiveSection(initialTarget);
+            
+            // --- Solution Section Accordion Logic ---
+            solutionCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const detail = card.nextElementSibling;
+                    const arrow = card.querySelector('span');
+
+                    if (detail.style.maxHeight) {
+                        detail.style.maxHeight = null;
+                        arrow.style.transform = 'rotate(0deg)';
+                    } else {
+                        // Close other open accordions
+                        solutionCards.forEach(otherCard => {
+                            otherCard.nextElementSibling.style.maxHeight = null;
+                            otherCard.querySelector('span').style.transform = 'rotate(0deg)';
+                        });
+                        detail.style.maxHeight = detail.scrollHeight + "px";
+                        arrow.style.transform = 'rotate(180deg)';
+                    }
+                });
+            });
+
+
+            // --- Charting Logic ---
+            let problemChart, hubChart, impactBarChart, impactLineChart;
+            const chartFont = { size: 12, family: 'Inter' };
+            const sharedTooltipOptions = {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: (tooltipItems) => {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                return Array.isArray(label) ? label.join(' ') : label;
+                            }
+                        }
+                    }
+                }
+            };
+
+            // Problem Chart
+            const problemCtx = document.getElementById('problemChart')?.getContext('2d');
+            if (problemCtx) {
+                problemChart = new Chart(problemCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Academic Stress', 'Anxiety', 'Social Isolation', 'Depression', 'Burnout', 'Sleep Disorders'],
+                        datasets: [{
+                            label: 'Percentage of Students Reporting Issue',
+                            data: [75, 68, 62, 55, 48, 45],
+                            backgroundColor: '#81B29A',
+                            borderColor: '#3D405B',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        indexAxis: 'y',
+                        scales: { x: { beginAtZero: true } },
+                        plugins: { ...sharedTooltipOptions.plugins, legend: { display: false } }
+                    }
+                });
+            }
+
+            // Self-Help Hub Chart
+            const hubCtx = document.getElementById('hubChart')?.getContext('2d');
+            if (hubCtx) {
+                hubChart = new Chart(hubCtx, {
+                    type: 'radar',
+                    data: {
+                        labels: ['Mindfulness', 'CBT/DBT Modules', 'Stress Relief Games', 'Guided Journaling', 'Habit Building', 'Breathing Exercises'],
+                        datasets: [{
+                            label: 'Wellness Tool Coverage',
+                            data: [9, 8, 7, 8, 9, 10],
+                            backgroundColor: 'rgba(224, 122, 95, 0.2)',
+                            borderColor: '#E07A5F',
+                            pointBackgroundColor: '#E07A5F',
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                         scales: { r: { beginAtZero: true, suggestedMax: 10 } },
+                         plugins: { ...sharedTooltipOptions.plugins, legend: { display: false } }
+                    }
+                });
+            }
+
+            // --- Impact Dashboard Charts ---
+            const impactData = {
+                2024: {
+                    issues: [60, 55, 50, 45, 30],
+                    trend: [12.1, 11.8, 11.5, 11.2]
+                },
+                2025: {
+                    issues: [45, 50, 40, 35, 25],
+                    trend: [11.2, 10.5, 9.8, 9.1]
+                }
+            };
+            const impactBarCtx = document.getElementById('impactBarChart')?.getContext('2d');
+            const impactLineCtx = document.getElementById('impactLineChart')?.getContext('2d');
+            
+            const createImpactCharts = (year) => {
+                if (impactBarChart) impactBarChart.destroy();
+                if (impactLineChart) impactLineChart.destroy();
+
+                if (impactBarCtx) {
+                    impactBarChart = new Chart(impactBarCtx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['Anxiety', 'Stress', 'Depression', 'Isolation', 'Burnout'],
+                            datasets: [{
+                                label: `Reported Issues for ${year}`,
+                                data: impactData[year].issues,
+                                backgroundColor: '#E07A5F',
+                            }]
+                        },
+                        options: { responsive: true, maintainAspectRatio: false, plugins: { ...sharedTooltipOptions.plugins, legend: { display: false } } }
+                    });
+                }
+
+                if (impactLineCtx) {
+                    impactLineChart = new Chart(impactLineCtx, {
+                        type: 'line',
+                        data: {
+                            labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+                            datasets: [{
+                                label: `Avg. Distress Score for ${year}`,
+                                data: impactData[year].trend,
+                                borderColor: '#81B29A',
+                                tension: 0.1,
+                                fill: true,
+                                backgroundColor: 'rgba(129, 178, 154, 0.1)'
+                            }]
+                        },
+                        options: { responsive: true, maintainAspectRatio: false, plugins: { ...sharedTooltipOptions.plugins, legend: { display: false } } }
+                    });
+                }
+            };
+            
+            const yearFilter = document.getElementById('yearFilter');
+            yearFilter.addEventListener('change', (e) => {
+                createImpactCharts(e.target.value);
+            });
+
+            // Initial chart creation for impact dashboard
+            createImpactCharts(yearFilter.value);
+        });
+    </script>
+</body>
+</html>
