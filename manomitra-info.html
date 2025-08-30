@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mano Mitra: A Digital Revolution in Student Mental Wellness</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Color Palette: Brilliant Blues -->
+    <!-- NO SVG and NO Mermaid JS were used in this file. All diagrams are built with HTML/CSS. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .flow-arrow::after {
+            content: '→';
+            font-size: 2rem;
+            line-height: 1;
+            color: #ca6702;
+        }
+        .flow-arrow-down::after {
+            content: '↓';
+            font-size: 2rem;
+            line-height: 1;
+            color: #ca6702;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <header class="bg-[#005f73] text-white p-8 text-center">
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-2">Mano Mitra</h1>
+        <p class="text-lg md:text-xl font-light max-w-3xl mx-auto">A Digital Revolution in Student Mental Wellness for a Stronger, Healthier India</p>
+    </header>
+
+    <main class="p-4 md:p-8">
+
+        <section id="crisis" class="max-w-6xl mx-auto mb-12">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-[#005f73]">The Silent Epidemic on Campus</h2>
+                <p class="mt-2 text-slate-600 max-w-2xl mx-auto">Indian college students face a growing mental health crisis, marked by a significant lack of accessible, stigma-free support systems.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold text-center text-[#0a9396] mb-4">Prevalence of Key Issues</h3>
+                    <p class="text-slate-600 mb-4 text-center">Data indicates that a substantial portion of students grapple with significant mental health challenges like anxiety and depression during their academic careers, often without any formal support.</p>
+                    <div class="chart-container">
+                        <canvas id="studentIssuesChart"></canvas>
+                    </div>
+                </div>
+                <div class="text-center p-6">
+                     <div class="text-7xl md:text-8xl font-extrabold text-[#ae2012]">1 in 4</div>
+                     <p class="mt-4 text-2xl font-bold text-slate-700">students report experiencing symptoms of mild to severe depression.</p>
+                     <p class="mt-2 text-slate-500">This highlights a critical need for early detection and preventative tools that are both scalable and confidential.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="solution" class="bg-white py-12 px-4 rounded-lg shadow-lg max-w-6xl mx-auto mb-12">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-[#005f73]">Introducing Mano Mitra: The Integrated Solution</h2>
+                <p class="mt-2 text-slate-600 max-w-3xl mx-auto">Mano Mitra is a comprehensive digital ecosystem designed to bridge the gap in student mental healthcare through a unique, multi-pronged approach.</p>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-4 text-center">
+                <div class="flex flex-col items-center">
+                    <div class="w-48 h-48 bg-[#94d2bd] rounded-lg shadow-md p-4 flex flex-col justify-center items-center">
+                        <span class="text-5xl">🤖</span>
+                        <h4 class="font-bold text-slate-900 mt-2">AI-Guided First-Aid</h4>
+                    </div>
+                </div>
+                
+                <div class="hidden md:block flow-arrow"></div>
+
+                <div class="flex flex-col items-center">
+                     <div class="w-48 h-48 bg-[#e9d8a6] rounded-lg shadow-md p-4 flex flex-col justify-center items-center">
+                         <span class="text-5xl">🧘</span>
+                        <h4 class="font-bold text-slate-900 mt-2">Self-Help & Wellness Hub</h4>
+                    </div>
+                </div>
+
+                <div class="hidden md:block flow-arrow"></div>
+
+                <div class="flex flex-col items-center">
+                    <div class="w-48 h-48 bg-[#ee9b00] rounded-lg shadow-md p-4 flex flex-col justify-center items-center">
+                        <span class="text-5xl">🤝</span>
+                        <h4 class="font-bold text-slate-900 mt-2">Therapist Marketplace</h4>
+                    </div>
+                </div>
+                 
+                 <div class="hidden md:block flow-arrow"></div>
+
+                <div class="flex flex-col items-center">
+                    <div class="w-48 h-48 bg-[#ca6702] rounded-lg shadow-md p-4 flex flex-col justify-center items-center">
+                        <span class="text-5xl">💬</span>
+                        <h4 class="font-bold text-slate-900 mt-2">Community & Peer Support</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="max-w-6xl mx-auto mb-12">
+             <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-[#005f73]">How Mano Mitra Works: A Deeper Look</h2>
+                <p class="mt-2 text-slate-600 max-w-2xl mx-auto">Each feature is scientifically designed to provide targeted support, creating a holistic wellness journey for every student.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold text-center text-[#0a9396] mb-4">AI First-Aid: Immediate, Intelligent Support</h3>
+                    <p class="text-slate-600 mb-6 text-center">The AI chatbot uses Natural Language Processing and therapeutic frameworks like CBT and DBT to provide instant, confidential first-aid and triage users to the right level of care.</p>
+                    <div class="flex flex-col items-center space-y-4">
+                        <div class="p-3 bg-slate-100 rounded-lg w-full text-center font-semibold">User Conversation Input</div>
+                        <div class="flow-arrow-down"></div>
+                        <div class="p-3 bg-[#e9d8a6] rounded-lg w-full text-center font-semibold">Sentiment & Emotion Recognition</div>
+                        <div class="flow-arrow-down"></div>
+                        <div class="p-3 bg-[#94d2bd] rounded-lg w-full text-center font-semibold">Role-Play Therapy Bot (CBT/DBT)</div>
+                        <div class="flow-arrow-down"></div>
+                        <div class="p-3 bg-[#ee9b00] rounded-lg w-full text-center font-semibold">Guided to Self-Help, Peer Support, or Professional</div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold text-center text-[#0a9396] mb-4">The Wellness Hub: A 360° Approach</h3>
+                     <p class="text-slate-600 mb-4 text-center">Our Self-Help Hub provides a balanced array of evidence-based tools, from meditation and mindfulness exercises to gamified stress-relief and structured journaling.</p>
+                    <div class="chart-container">
+                        <canvas id="wellnessHubChart"></canvas>
+                    </div>
+                </div>
+
+                 <div class="bg-white rounded-lg shadow-md p-6 md:col-span-2">
+                    <h3 class="text-xl font-bold text-center text-[#0a9396] mb-4">A Hybrid Model for Comprehensive Care</h3>
+                    <p class="text-slate-600 mb-6 text-center">Mano Mitra's true strength lies in its integrated hybrid model, ensuring no student falls through the cracks. It seamlessly combines AI, community, and professional help.</p>
+                     <div class="flex flex-col md:flex-row justify-around items-center space-y-4 md:space-y-0">
+                        <div class="text-center p-4 border-4 border-[#0a9396] rounded-full w-48 h-48 flex flex-col justify-center shadow-inner bg-slate-50">
+                            <h4 class="font-bold text-lg text-[#0a9396]">AI & Self-Help</h4>
+                            <p class="text-sm text-slate-500">24/7 access to tools & first-aid.</p>
+                        </div>
+                         <div class="text-center p-4 border-4 border-[#ee9b00] rounded-full w-48 h-48 flex flex-col justify-center shadow-inner bg-slate-50">
+                            <h4 class="font-bold text-lg text-[#ee9b00]">Peer Support</h4>
+                            <p class="text-sm text-slate-500">Anonymous forums & trained volunteers.</p>
+                        </div>
+                         <div class="text-center p-4 border-4 border-[#bb3e03] rounded-full w-48 h-48 flex flex-col justify-center shadow-inner bg-slate-50">
+                            <h4 class="font-bold text-lg text-[#bb3e03]">Professional Help</h4>
+                            <p class="text-sm text-slate-500">AI-matched licensed therapists.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        
+        <section id="impact" class="max-w-6xl mx-auto mb-12">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-[#005f73]">Institutional Impact: Data-Driven Wellness</h2>
+                <p class="mt-2 text-slate-600 max-w-2xl mx-auto">The Admin Dashboard provides institutions with anonymized, aggregate data to identify trends, measure the impact of interventions, and build a proactive mental health strategy.</p>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-xl font-bold text-center text-[#0a9396] mb-4">Projected Reduction in Student Distress Levels</h3>
+                <p class="text-slate-600 mb-4 text-center">By providing early, accessible, and continuous support, Mano Mitra aims to significantly lower the overall distress levels within the student population over time, fostering a healthier and more productive academic environment.</p>
+                <div class="chart-container md:max-w-4xl">
+                    <canvas id="impactTrendChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-[#005f73] text-white p-6 text-center mt-12">
+        <p class="font-semibold">Mano Mitra: Your Friend in Mind.</p>
+        <p class="text-sm opacity-80 mt-1">Building a mentally healthy future for India's students, one campus at a time.</p>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            const processLabel = (label) => {
+                if (typeof label !== 'string' || label.length <= 16) {
+                    return label;
+                }
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                for (const word of words) {
+                    if ((currentLine + ' ' + word).trim().length > 16) {
+                        lines.push(currentLine.trim());
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                }
+                if (currentLine) {
+                    lines.push(currentLine.trim());
+                }
+                return lines;
+            };
+
+            const sharedTooltipOptions = {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                  return label.join(' ');
+                                } else {
+                                  return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+            
+            const studentIssuesCtx = document.getElementById('studentIssuesChart')?.getContext('2d');
+            if (studentIssuesCtx) {
+                new Chart(studentIssuesCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Experiencing Anxiety or Depression Symptoms', 'No Reported Symptoms'],
+                        datasets: [{
+                            label: 'Student Mental Health',
+                            data: [35, 65],
+                            backgroundColor: ['#ca6702', '#94d2bd'],
+                            borderColor: '#ffffff',
+                            borderWidth: 4,
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                             ...sharedTooltipOptions.plugins,
+                            legend: {
+                                position: 'bottom',
+                            },
+                        }
+                    }
+                });
+            }
+
+            const wellnessHubCtx = document.getElementById('wellnessHubChart')?.getContext('2d');
+            if (wellnessHubCtx) {
+                new Chart(wellnessHubCtx, {
+                    type: 'radar',
+                    data: {
+                        labels: ['Mindfulness & Meditation', 'CBT/DBT Modules', 'Gamified Stress Relief', 'Guided Journaling', 'Habit Building'],
+                        datasets: [{
+                            label: 'Focus Areas',
+                            data: [85, 90, 75, 80, 88],
+                            backgroundColor: 'rgba(10, 147, 150, 0.2)',
+                            borderColor: '#0a9396',
+                            pointBackgroundColor: '#0a9396',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: '#0a9396'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                         plugins: {
+                             ...sharedTooltipOptions.plugins,
+                            legend: {
+                                display: false
+                            },
+                        },
+                        scales: {
+                            r: {
+                                beginAtZero: true,
+                                suggestedMax: 100,
+                                grid: {
+                                    color: '#e2e8f0'
+                                },
+                                angleLines: {
+                                    color: '#e2e8f0'
+                                },
+                                pointLabels: {
+                                    font: {
+                                        size: 12
+                                    },
+                                    color: '#475569'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            const impactTrendCtx = document.getElementById('impactTrendChart')?.getContext('2d');
+            if (impactTrendCtx) {
+                new Chart(impactTrendCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Pre-Launch', 'Year 1', 'Year 2', 'Year 3', 'Year 4'],
+                        datasets: [{
+                            label: 'Average Student Distress Score (GAD-7/PHQ-9)',
+                            data: [12.5, 10.2, 8.1, 6.5, 5.8],
+                            fill: true,
+                            backgroundColor: 'rgba(187, 62, 3, 0.1)',
+                            borderColor: '#bb3e03',
+                            tension: 0.3,
+                            pointRadius: 5,
+                            pointBackgroundColor: '#bb3e03'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                             ...sharedTooltipOptions.plugins,
+                            legend: {
+                                display: false,
+                            },
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: false,
+                                title: {
+                                    display: true,
+                                    text: 'Distress Score'
+                                }
+                            },
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Implementation Timeline'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
